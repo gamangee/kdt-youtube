@@ -27,7 +27,15 @@ export default class Youtube {
         },
       })
       .then((res) => res.data.items)
-      .then((items) => items.map((item) => ({ ...item, id: item.id.videoId })));
+      .then((items) =>
+        items.filter((item) => item.id.kind !== 'youtube#channel')
+      )
+      .then((items) =>
+        items.map((item) => ({
+          ...item,
+          id: item.id.videoId,
+        }))
+      );
   }
 
   async #mostPopular() {
@@ -55,5 +63,16 @@ export default class Youtube {
       .then((res) =>
         res.data.items.map((item) => ({ ...item, id: item.id.videoId }))
       );
+  }
+
+  async channelImgURL(id) {
+    return this.instance
+      .get('channels', {
+        params: {
+          part: 'snippet',
+          id,
+        },
+      })
+      .then((res) => res.data.items[0].snippet.thumbnails.default.url);
   }
 }

@@ -12,11 +12,7 @@ export default class Youtube {
       .get(`/videos/search.json`)
       .then((res) => res.data.items)
       .then((items) =>
-        items.map((item) => ({
-          ...item,
-          id: item.id.videoId,
-          kind: item.id.kind,
-        }))
+        items.filter((item) => item.id.kind !== 'youtube#channel')
       );
   }
 
@@ -34,5 +30,11 @@ export default class Youtube {
       .then((res) =>
         res.data.items.map((item) => ({ ...item, id: item.id.videoId }))
       );
+  }
+
+  async channelImgURL(id) {
+    return axios
+      .get(`/videos/channel.json`)
+      .then((res) => res.data.items[0].snippet.thumbnails.default.url);
   }
 }

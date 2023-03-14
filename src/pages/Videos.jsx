@@ -20,7 +20,6 @@ export default function Videos() {
     },
     QueryOption
   );
-
   return (
     <div>
       {videos && (
