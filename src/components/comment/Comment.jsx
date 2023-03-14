@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useYoutubeApi } from "../../context/ApiContext";
 import CommentItem from "./CommentItem";
+import { BsFilterLeft } from "react-icons/bs";
+import styles from "./css/Comment.module.css";
 
 export default function Comment() {
   // http://localhost:3000/videos/watch/:z0Yty3hIAeY
@@ -14,17 +16,21 @@ export default function Comment() {
     return youtube.comment(videoId);
   });
 
-  // console.log(commentList);
+  const [isComment, setIsComment] = useState(false);
 
   return (
-    <>
+    <div className={styles.container}>
       {commentList ? (
-        <div>
-          <div>댓글 {commentList.length}개</div>
-          <button>정렬기준</button>
-          <div>
-            <img src="" alt="profileImg" />
-            <input type="text" placeholder="댓글추가"></input>
+        <>
+          <div className={styles.commentHeader}>
+            <div>댓글 {commentList.length}개</div>
+            <button>
+              <BsFilterLeft /> 정렬 기준
+            </button>
+          </div>
+          <div className={styles.commentAdd}>
+            <img src="http://localhost:3000/favicon.ico" />
+            <input type="text" placeholder="댓글추가..."></input>
           </div>
           {commentList.map((comment) => (
             <div key={comment.id}>
@@ -34,17 +40,22 @@ export default function Comment() {
               />
             </div>
           ))}
-        </div>
+        </>
       ) : (
-        <div>
-          <div>댓글 0개</div>
-          <button>정렬기준</button>
-          <div>
-            <img src="" alt="profileImg" />
-            <input type="text" placeholder="댓글추가"></input>
+        <>
+          <div className={styles.commentHeader}>
+            <div>댓글 0개</div>
+            <button>
+              <BsFilterLeft />
+              정렬 기준
+            </button>
           </div>
-        </div>
+          <div className={styles.commentAdd}>
+            <img src="" alt="profileImg" />
+            <input type="text" placeholder="댓글추가..."></input>
+          </div>
+        </>
       )}
-    </>
+    </div>
   );
 }
