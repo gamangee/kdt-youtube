@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 
-export default class mockYoutube {
+export default class Youtube {
   constructor() {
     this.instance = axios.create({
-      baseURL: "https://youtube.googleapis.com/youtube/v3",
+      baseURL: 'https://youtube.googleapis.com/youtube/v3',
       params: {
         key: process.env.REACT_APP_YOUTUBE_API_KEY,
       },
@@ -11,17 +11,18 @@ export default class mockYoutube {
   }
 
   async search(keyword) {
-    console.log(`${keyword ? "search fetching" : "mostPopular fetching"}`);
+    console.log(`${keyword ? 'search fetching' : 'mostPopular fetching'}`);
     return keyword ? this.#searchByKeyword(keyword) : this.#mostPopular();
   }
 
   async #searchByKeyword(keyword) {
-    console.log("seatch facthing");
+    console.log('search facthing');
     return this.instance
-      .get("search", {
+      .get('search', {
         params: {
-          part: "snippet",
-          maxResults: 10,
+          part: 'snippet',
+          maxResults: 3,
+          type: 'video',
           q: keyword,
         },
       })
@@ -31,14 +32,28 @@ export default class mockYoutube {
 
   async #mostPopular() {
     return this.instance
-      .get("search", {
+      .get('videos', {
         params: {
-          part: "snippet",
-          maxResults: 10,
-          chart: "mostPopular",
+          part: 'snippet,statistics',
+          maxResults: 3,
+          chart: 'mostPopular',
         },
       })
       .then((res) => res.data.items);
   }
 
+  async relatedVideos(id) {
+    return this.instance
+      .get('search', {
+        params: {
+          part: 'snippet',
+          maxResults: 3,
+          type: 'video',
+          relatedToVideoId: id,
+        },
+      })
+      .then((res) =>
+        res.data.items.map((item) => ({ ...item, id: item.id.videoId }))
+      );
+  }
 }

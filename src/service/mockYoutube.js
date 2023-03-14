@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-export default class mockYoutube {
+export default class Youtube {
   // constructor(){}
 
   async search(keyword) {
@@ -8,15 +8,31 @@ export default class mockYoutube {
   }
 
   async #searchByKeyword() {
-    return axios.get(`/videos/search.json`).then((res) => res.data.items)
-    .then(items => items.map((item)=>({...item, id : item.id.videoId , kind : item.id.kind})))
+    return axios
+      .get(`/videos/search.json`)
+      .then((res) => res.data.items)
+      .then((items) =>
+        items.map((item) => ({
+          ...item,
+          id: item.id.videoId,
+          kind: item.id.kind,
+        }))
+      );
   }
-  
+
   async #mostPopular() {
-    return axios.get(`/videos/popular.json`).then((res) => res.data.items)
+    return axios.get(`/videos/popular.json`).then((res) => res.data.items);
   }
-  
+
   async comments() {
-    return axios.get(`/videos/comment.json`).then(res=> res.data.items)
+    return axios.get(`/videos/comment.json`).then((res) => res.data.items);
+  }
+
+  async relatedVideos() {
+    return axios
+      .get(`/videos/related.json`)
+      .then((res) =>
+        res.data.items.map((item) => ({ ...item, id: item.id.videoId }))
+      );
   }
 }
