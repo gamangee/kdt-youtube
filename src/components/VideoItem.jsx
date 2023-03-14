@@ -38,7 +38,7 @@ const VideoItem = ({ video, type }) => {
           <div
             className={type === 'main' ? styles.mainInfo : styles.relatedInfo}
           >
-            <div className={type === 'related' && styles.noImg}>
+            <div className={type === 'related' ? styles.noImg : ''}>
               {channelImgURL ? (
                 <div className={styles.channelThumbnail}>
                   <img
