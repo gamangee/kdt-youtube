@@ -1,3 +1,4 @@
+// 직접 만든 조회수 Count 함수
 export function ViewCount(views) {
   let result = '';
   const koreanunits = ['천', '만', '억'];

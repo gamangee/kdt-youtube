@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useYoutubeApi } from '../context/ApiContext';
 import { DateFormatter } from '../util/date';
-import { ViewCount } from '../util/views';
 import styles from './VideoItem.module.css';
 
 const VideoItem = ({ video, type }) => {
@@ -66,7 +65,12 @@ const VideoItem = ({ video, type }) => {
                 </div>
                 <div className={styles.videoEtc}>
                   {type === 'main' && !keyword && (
-                    <span>{ViewCount(video.statistics.viewCount)}</span>
+                    <span>
+                      {new Intl.NumberFormat('ko-KR', {
+                        notation: 'compact',
+                        maximumFractionDigits: 1,
+                      }).format(video.statistics.viewCount)}
+                    </span>
                   )}
                   <span className={keyword ? '' : styles.dot}></span>
                   <span>{DateFormatter(video.snippet.publishedAt, 'ko')}</span>
