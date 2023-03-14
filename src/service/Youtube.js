@@ -41,4 +41,24 @@ export default class mockYoutube {
       .then((res) => res.data.items);
   }
 
+  async comment(videoId) {
+    return this.instance
+      .get("commentThreads", {
+        params: {
+          part: "snippet",
+          videoId: videoId,
+          maxResults: 5,
+        },
+      })
+      .then((res) => res.data.items)
+      .then((items) =>
+        items.map((item) => {
+          return {
+            ...item,
+            topLevelComment: item.snippet.topLevelComment.snippet,
+            totalReplyCount: item.snippet.totalReplyCount,
+          };
+        })
+      );
+  }
 }
