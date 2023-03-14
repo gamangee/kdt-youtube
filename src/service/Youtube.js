@@ -55,6 +55,7 @@ export default class mockYoutube {
         items.map((item) => {
           return {
             ...item,
+            topLevelCommentId: item.snippet.topLevelComment.id,
             topLevelComment: item.snippet.topLevelComment.snippet,
             totalReplyCount: item.snippet.totalReplyCount,
           };

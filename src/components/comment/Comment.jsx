@@ -28,12 +28,42 @@ export default function Comment() {
               <BsFilterLeft /> 정렬 기준
             </button>
           </div>
+          {/* 댓글 input */}
           <div className={styles.commentAdd}>
             <img src="http://localhost:3000/favicon.ico" />
-            <input type="text" placeholder="댓글추가..."></input>
+            <div>
+              <input
+                type="text"
+                placeholder="댓글추가..."
+                onClick={() => setIsComment(true)}
+              ></input>
+              {/* 댓글 토글 */}
+              {isComment ? (
+                <div className={styles.commentToggle}>
+                  {/* 취소버튼 */}
+                  <button
+                    className={styles.commentCancle}
+                    onClick={() => setIsComment(false)}
+                  >
+                    취소
+                  </button>
+                  {/* 답글 등록 버튼 */}
+                  <button
+                    className={styles.commentRegister}
+                    onClick={() => setIsComment(false)}
+                  >
+                    답글
+                  </button>
+                </div>
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
           {commentList.map((comment) => (
             <div key={comment.id}>
+              {/* 댓글 Id */}
+              {/* {console.log(comment.topLevelCommentId)} */}
               <CommentItem
                 comment={comment.topLevelComment}
                 replyCount={comment.totalReplyCount}

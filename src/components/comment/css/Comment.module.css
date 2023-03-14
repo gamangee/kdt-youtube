@@ -1,5 +1,7 @@
 /* Comment */
+
 .container {
+  min-width: 500px;
   background-color: #0f0f0f;
   color: #fff;
   padding: 10px 25px;
@@ -18,7 +20,7 @@
 }
 
 .commentHeader button {
-  width: 120px;
+  width: 110px;
   font-size: 16px;
   background: none;
   color: #fff;
@@ -51,10 +53,10 @@
 
 .commentAdd {
   width: 100%;
-  height: 50px;
+  padding: 0 10px;
   margin-bottom: 20px;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: flex-start;
   box-sizing: border-box;
   position: relative;
@@ -67,9 +69,14 @@
   margin-right: 15px;
 }
 
+.commentAdd div {
+  width: 100%;
+}
+
 .commentAdd input {
   width: 100%;
-  color: rgba(100, 100, 100, 0.7);
+  margin-bottom: 10px;
+  color: #fff;
   border: none;
   border-bottom: 2px solid rgba(100, 100, 100, 0.7);
   background-color: #0f0f0f;
@@ -80,4 +87,30 @@
 
 .commentAdd input:focus {
   border-bottom: 2.5px solid #fff;
+}
+
+.commentToggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.commentCancle,
+.commentRegister {
+  width: 55px;
+  height: 35px;
+  color: #fff;
+  border-radius: 20px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.commentCancle {
+  margin-right: 5px;
+}
+
+.commentCancle:hover,
+.commentRegister:hover {
+  background: rgba(100, 100, 100, 0.7);
 }

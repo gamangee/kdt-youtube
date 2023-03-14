@@ -10,8 +10,6 @@ import CommentDate from "./CommentDate";
 import styles from "./css/CommentItem.module.css";
 
 export default function CommentItem({ comment, replyCount }) {
-  // console.log(comment);
-
   // 좋아요 클릭여부
   const [isLiked, setIsLiked] = useState(false);
   // 싫어요 클릭여부
@@ -22,7 +20,6 @@ export default function CommentItem({ comment, replyCount }) {
   const [isReply, setIsReply] = useState(false);
   // 답글 개수(확인) 버튼 클릭여부
   const [isReplyCount, setIsReplyCount] = useState(false);
-  // console.log(isReply, isReplyCount);
 
   return (
     <div className={styles.container}>
@@ -33,7 +30,7 @@ export default function CommentItem({ comment, replyCount }) {
       <div className={styles.comment}>
         <div className={styles.commentInfo}>
           {/* 작성자 */}
-          <a href="javascript:void(0)">{comment.authorDisplayName}</a>
+          <a href="">{comment.authorDisplayName}</a>
           {/* 댓글 작성 날짜 */}
           <div>
             <CommentDate
@@ -43,13 +40,22 @@ export default function CommentItem({ comment, replyCount }) {
           </div>
         </div>
         {/* 댓글 내용 */}
-        <div className={styles.commentContent}>{comment.textOriginal}</div>
+
+        <div
+          className={styles.commentContent}
+          dangerouslySetInnerHTML={{ __html: comment.textDisplay }}
+        >
+          {/* {comment.textDisplay} */}
+        </div>
         {/* 버튼 */}
         <div className={styles.commentBtnGroup}>
           {/* 좋아요버튼 */}
           <div
             className={styles.commentLike}
-            onClick={() => setIsLiked(!isLiked)}
+            onClick={() => {
+              setIsLiked(!isLiked);
+              setIsDisLiked(false);
+            }}
           >
             {isLiked ? (
               <>
@@ -76,7 +82,10 @@ export default function CommentItem({ comment, replyCount }) {
           {/* 싫어요버튼 */}
           <div
             className={styles.commentDisLike}
-            onClick={() => setIsDisLiked(!isDisLiked)}
+            onClick={() => {
+              setIsDisLiked(!isDisLiked);
+              setIsLiked(false);
+            }}
           >
             {isDisLiked ? (
               <button>
@@ -99,7 +108,8 @@ export default function CommentItem({ comment, replyCount }) {
         {/* 답글 토글  */}
         {isReply ? (
           <div className={styles.replyToggle}>
-            <img src="http://localhost:3000/favicon.ico" alt="profile" />
+            {/* 프로필 이미지 */}
+            <img src="/" alt="profile" />
             <div className={styles.replyToggleContent}>
               <input type="text" placeholder="답글추가..."></input>
               <div className={styles.replyToggleBtngroup}>

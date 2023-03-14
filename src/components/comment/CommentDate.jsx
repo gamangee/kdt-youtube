@@ -17,7 +17,7 @@ export default function CommentDate({ publishedAt, updatedAt }) {
       {/* timeAgo는 몇 주전으로 뜸! 10일전 .. 이런거 x*/}
       {/* <span>{formatAgo(updatedDate)}</span> */}
       {/* 댓글 수정 여부 표시 */}
-      {updatedDate === publishedDate ? <></> : <span>(수정됨)</span>}
+      {updatedDate !== publishedDate ? <></> : <span>(수정됨)</span>}
     </div>
   );
 }
