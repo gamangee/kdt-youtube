@@ -73,6 +73,7 @@ export default function VideoDetail() {
             </article>
             <section className={styles.channelAndLikes}>
               <ChannelInfo playerSnippet={snippet} />
+
               <ul className={styles.lists}>
                 <li className={styles.list}>
                   <button className={styles.buttons}>
