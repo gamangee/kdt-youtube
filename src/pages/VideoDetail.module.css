@@ -24,6 +24,12 @@
   width: 720px;
 }
 
+.overButton {
+  color: white;
+  border: 0;
+  background-color: transparent;
+}
+
 .buttons {
   background-color: #272727;
   color: white;
