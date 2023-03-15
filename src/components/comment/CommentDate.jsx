@@ -1,5 +1,5 @@
 import React from "react";
-// import { formatAgo } from "./dateFunction/formatAgo";
+import { DateFormatter } from "../../util/date";
 import calcDate from "./dateFunction/calcDate";
 
 export default function CommentDate({ publishedAt, updatedAt }) {
@@ -13,9 +13,9 @@ export default function CommentDate({ publishedAt, updatedAt }) {
   return (
     <div>
       {/* 날짜 ( ex. 00일전 ) */}
-      <span>{calcDate(currentDate, updatedDate)}</span>
+      {/* <span>{calcDate(currentDate, updatedDate)}</span> */}
       {/* timeAgo는 몇 주전으로 뜸! 10일전 .. 이런거 x*/}
-      {/* <span>{formatAgo(updatedDate)}</span> */}
+      <span>{DateFormatter(updatedDate, "ko")}</span>
       {/* 댓글 수정 여부 표시 */}
       {updatedDate !== publishedDate ? <></> : <span>(수정됨)</span>}
     </div>
