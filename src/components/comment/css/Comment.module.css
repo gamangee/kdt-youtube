@@ -1,0 +1,116 @@
+/* Comment */
+
+.container {
+  min-width: 500px;
+  background-color: #0f0f0f;
+  color: #fff;
+  padding: 10px 25px;
+}
+
+.commentHeader {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.commentHeader div {
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.commentHeader button {
+  width: 110px;
+  font-size: 16px;
+  background: none;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.commentHeader button:hover::before {
+  content: "댓글 정렬";
+  width: 80px;
+  height: 25px;
+  z-index: 1;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: calc(100% + 15px);
+  left: calc(50% - 40px);
+  background-color: rgba(100, 100, 100, 0.7);
+  font-size: 13px;
+}
+
+.commentHeader button:active {
+  background-color: rgba(100, 100, 100, 0.7);
+}
+
+.commentAdd {
+  width: 100%;
+  padding: 0 10px;
+  margin-bottom: 20px;
+  display: flex;
+  /* align-items: center; */
+  justify-content: flex-start;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.commentAdd img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.commentAdd div {
+  width: 100%;
+}
+
+.commentAdd input {
+  width: 100%;
+  margin-bottom: 10px;
+  color: #fff;
+  border: none;
+  border-bottom: 2px solid rgba(100, 100, 100, 0.7);
+  background-color: #0f0f0f;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.5s;
+}
+
+.commentAdd input:focus {
+  border-bottom: 2.5px solid #fff;
+}
+
+.commentToggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.commentCancle,
+.commentRegister {
+  width: 55px;
+  height: 35px;
+  color: #fff;
+  border-radius: 20px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.commentCancle {
+  margin-right: 5px;
+}
+
+.commentCancle:hover,
+.commentRegister:hover {
+  background: rgba(100, 100, 100, 0.7);
+}

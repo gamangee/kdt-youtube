@@ -55,9 +55,30 @@ export default class Youtube {
           chart: 'mostPopular',
         },
       })
-      .then((res) => res.data.items);
+      .then((res) => res.data.items[0]);
   }
 
+  async comment(videoId) {
+    return this.instance
+      .get("commentThreads", {
+        params: {
+          part: "snippet",
+          videoId: videoId,
+          maxResults: 10,
+        },
+      })
+      .then((res) => res.data.items)
+      .then((items) =>
+        items.map((item) => {
+          return {
+            ...item,
+            // topLevelCommentId: item.snippet.topLevelComment.id,
+            topLevelComment: item.snippet.topLevelComment.snippet,
+            totalReplyCount: item.snippet.totalReplyCount,
+          };
+        })
+      );
+  }
   async relatedVideos(id) {
     return this.instance
       .get('search', {
