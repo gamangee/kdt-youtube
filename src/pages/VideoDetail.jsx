@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useYoutubeApi } from "../context/ApiContext";
@@ -10,23 +10,25 @@ import RelatedVideos from "../components/RelatedVideos";
 import Comment from "../components/comment/Comment";
 
 export default function VideoDetail() {
+  const [queryResult, setQueryResult] = useState({});
+
   const {
     state: { video },
   } = useLocation();
 
   const { videoId } = useParams();
   const { youtube } = useYoutubeApi();
+
   const QueryOption = {
     staleTime: 5 * 60 * 1000,
   };
 
-  const { data: queryResult } = useQuery(
-    ["searchId"],
-    () => {
-      return youtube.searchId(videoId);
-    },
-    QueryOption
-  );
+  useEffect(() => {
+    youtube.searchId(videoId).then((res) => setQueryResult(res));
+  }, [videoId]);
+
+  console.log(queryResult);
+
   const { contentDetails, player, snippet, statistics } = queryResult
     ? queryResult
     : "";
@@ -51,9 +53,6 @@ export default function VideoDetail() {
     return str.slice(0, 10).replaceAll("-", ".");
   };
 
-
-  console.log(queryResult);
-
   return (
     <>
       <div className={styles.wrapper}>
@@ -62,19 +61,18 @@ export default function VideoDetail() {
             <article>
               <div>
                 <iframe
+                  title={snippet.title}
                   width="100%"
                   height="800"
                   alt="youtube#video"
                   src={`https://www.youtube.com/embed/${videoId}`}
-                ></iframe>
+                />
               </div>
               {/* <div dangerouslySetInnerHTML={{ __html: player.embedHtml }}></div> */}
               <h3>{snippet.title}</h3>
             </article>
-
             <section className={styles.channelAndLikes}>
               <ChannelInfo playerSnippet={snippet} />
-
               <ul className={styles.lists}>
                 <li className={styles.list}>
                   <button className={styles.buttons}>
@@ -108,8 +106,9 @@ export default function VideoDetail() {
                   {convertedDate(snippet.publishedAt)}
                 </p>
               </div>
-              <p className={styles.tags}>{snippet.tags.map((i) => `#${i} `)}</p>
-
+              <p className={styles.tags}>
+                {snippet?.tags?.map((i) => `#${i} `)}
+              </p>
               <p>{snippet.description}</p>
             </section>
             <Comment id={video.id} />
@@ -117,7 +116,7 @@ export default function VideoDetail() {
         ) : (
           <></>
         )}
-      <RelatedVideos id={video.id} />
+        <RelatedVideos id={video.id} />
       </div>
     </>
   );

@@ -6,18 +6,25 @@ import styles from './ChannelInfo.module.css';
 
 const ChannelInfo = ({ playerSnippet }) => {
   const { youtube } = useYoutubeApi();
+  const [queryResult, setQueryResult] = useState({})
 
-  const QueryOption = {
-    staleTime: 5 * 60 * 1000,
-  };
+  // const QueryOption = {
+  //   staleTime: 5 * 60 * 1000,
+  // };
 
-  const { data: queryResult } = useQuery(
-    ['searchChannel'],
-    () => {
-      return youtube.searchChannel(playerSnippet.channelId);
-    },
-    QueryOption,
-  );
+  useEffect(()=>{
+    youtube.searchChannel(playerSnippet.channelId).then(res => setQueryResult(res))
+
+  },[playerSnippet])
+
+
+  // const { data: queryResult } = useQuery(
+  //   ['searchChannel'],
+  //   () => {
+  //     return youtube.searchChannel(playerSnippet.channelId);
+  //   },
+  //   QueryOption,
+  // );
 
   const { snippet, statistics } = queryResult ? queryResult : '';
 
@@ -41,6 +48,7 @@ const ChannelInfo = ({ playerSnippet }) => {
       {snippet ? (
         <div className={styles.wrapper}>
           <img
+            alt='thumbnails'
             src={snippet.thumbnails.default.url}
             style={{
               borderRadius: '50%',
@@ -48,11 +56,11 @@ const ChannelInfo = ({ playerSnippet }) => {
               height: 60,
               marginRight: 15,
             }}
-          ></img>
-          <p>
+          />
+          <div>
             <strong>{playerSnippet.channelTitle}</strong>
             <p>구독자 {formatNumber(statistics.subscriberCount)} </p>
-          </p>
+          </div>
 
           <button className={styles.subscribe}>구독</button>
         </div>
