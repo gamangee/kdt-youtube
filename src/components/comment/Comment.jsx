@@ -29,7 +29,7 @@ export default function Comment() {
             <div>댓글 {commentList.length}개</div>
             <button>
               <BsFilterLeft /> 정렬 기준
-            </button>
+            </button> 
           </div>
           {/* 댓글 input */}
           <div className={styles.commentAdd}>
