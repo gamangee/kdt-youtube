@@ -15,6 +15,7 @@ export default function Comment() {
     return youtube.comment(videoId);
   });
 
+  // 댓글 입력창 클릭 여부
   const [isComment, setIsComment] = useState(false);
 
   return (
@@ -29,10 +30,11 @@ export default function Comment() {
           </div>
           {/* 댓글 input */}
           <div className={styles.commentAdd}>
-            {/* 📌 댓글 작성 창 프로필 img  => 변경필요 */}
+            {/* 댓글 작성 창 프로필 img */}
             <img src='/images/profileImg.jpg' alt='profile_img' />
             <div>
               <input
+                className={styles.commentinput}
                 type='text'
                 placeholder='댓글추가...'
                 onClick={() => setIsComment(true)}

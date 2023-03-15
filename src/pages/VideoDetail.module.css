@@ -3,6 +3,7 @@
   margin: 0 auto;
   display: flex;
   flex-flow: row wrap;
+  padding: 0 30px;
 }
 
 .channelInfo {
@@ -79,17 +80,25 @@
 }
 
 .firstInfoElements {
-  margin-right: 40px;
+  margin-right: 20px;
 }
 
 .tags {
   color: #3b92dc;
 }
 
+.overButton {
+  color: white;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 @media (max-width: 1000px) {
   .wrapper {
     display: block;
     margin: 0 30px;
+    padding: 0 10px;
   }
   .channelInfo {
     width: 100%;

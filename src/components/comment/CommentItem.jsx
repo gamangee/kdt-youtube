@@ -21,7 +21,7 @@ export default function CommentItem({ comment, replyCount }) {
   // 답글 개수(확인) 버튼 클릭여부
   const [isReplyCount, setIsReplyCount] = useState(false);
 
-  // 댓글 글자 150자보다 넘는지?
+  // 댓글 글자 150자보다 넘는지? => 자세히보기 버튼
   const [isLong, setIsLong] = useState(false);
 
   function checkLong(text) {
@@ -34,11 +34,14 @@ export default function CommentItem({ comment, replyCount }) {
     checkLong(comment.textDisplay.length);
   }, [comment]);
 
+  // 간략히버튼
+  const [summary, setSummary] = useState(false);
+
   // 답글 만들기
   function createReply(replyCount) {
     let arr = [];
     for (let i = 0; i < replyCount; i++) {
-      arr.push(<li>Nickname{i + 1} : BlaBlaBla ....</li>);
+      arr.push(<li key={i}>Nickname{i + 1} : BlaBlaBla ....</li>);
     }
     return arr;
   }
@@ -74,17 +77,36 @@ export default function CommentItem({ comment, replyCount }) {
                 __html: comment.textDisplay.substr(0, 150) + '...',
               }}
             ></div>
-            <div className={styles.moreBtn} onClick={() => setIsLong(false)}>
+            <div
+              className={styles.contentBtn}
+              onClick={() => {
+                setIsLong(false);
+                setSummary(true);
+              }}
+            >
               자세히 보기
             </div>
           </>
         ) : (
-          <div
-            className={styles.commentContent}
-            dangerouslySetInnerHTML={{
-              __html: comment.textDisplay,
-            }}
-          ></div>
+          <>
+            <div
+              className={styles.commentContent}
+              dangerouslySetInnerHTML={{
+                __html: comment.textDisplay,
+              }}
+            ></div>
+            {summary && (
+              <div
+                className={styles.contentBtn}
+                onClick={() => {
+                  setIsLong(true);
+                  setSummary(false);
+                }}
+              >
+                간략히
+              </div>
+            )}
+          </>
         )}
         {/* 버튼 */}
         <div className={styles.commentBtnGroup}>
