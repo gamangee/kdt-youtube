@@ -84,6 +84,8 @@ export default function VideoDetail() {
     }
   };
 
+  console.log(snippet);
+
   return (
     <>
       <div className={styles.wrapper}>
@@ -162,7 +164,15 @@ export default function VideoDetail() {
                   </>
                 ) : (
                   <>
-                    {snippet.description}
+                    {snippet.description.split('\n').map((i,index) => {
+                      return (
+                        <span key={index}>
+                          {i}
+                          <br />
+                        </span>
+                      );
+                    })}
+                    
                     <button
                       className={styles.overButton}
                       onClick={() => setIsOver((flag) => !flag)}
