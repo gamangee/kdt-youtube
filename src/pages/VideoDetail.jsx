@@ -117,23 +117,23 @@ export default function VideoDetail() {
               <p>
                 {isOver ? (
                   <>
-                  {`${snippet.description.slice(0, 200)} ... `}
-                  <button
-                    className={styles.overButton}
-                    onClick={() => setIsOver((flag) => !flag)}
-                  >
-                    더보기
-                  </button>
+                    {`${snippet.description.slice(0, 200)} ... `}
+                    <button
+                      className={styles.overButton}
+                      onClick={() => setIsOver((flag) => !flag)}
+                    >
+                      더보기
+                    </button>
                   </>
                 ) : (
                   <>
-                  {snippet.description}
-                  <button
-                    className={styles.overButton}
-                    onClick={() => setIsOver((flag) => !flag)}
-                  >
-                    &nbsp;간략히
-                  </button>
+                    {snippet.description}
+                    <button
+                      className={styles.overButton}
+                      onClick={() => setIsOver((flag) => !flag)}
+                    >
+                      &nbsp;간략히
+                    </button>
                   </>
                 )}
               </p>
