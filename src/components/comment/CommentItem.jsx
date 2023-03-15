@@ -148,7 +148,7 @@ export default function CommentItem({ comment, replyCount }) {
         {isReply && (
           <div className={styles.replyToggle}>
             {/* 프로필 이미지 */}
-            <img src="/" alt="profile" />
+            <img src="/images/profileImg.jpg" alt="profile" />
             <div className={styles.replyToggleContent}>
               <input type="text" placeholder="답글추가..."></input>
               <div className={styles.replyToggleBtngroup}>

@@ -4,10 +4,13 @@ import { useYoutubeApi } from "../../context/ApiContext";
 import CommentItem from "./CommentItem";
 import { BsFilterLeft } from "react-icons/bs";
 import styles from "./css/Comment.module.css";
+import { useParams } from "react-router-dom";
 
 export default function Comment() {
+
+  const {videoId} = useParams();
   // http://localhost:3000/videos/watch/:z0Yty3hIAeY
-  const videoId = "z0Yty3hIAeY";
+  // const videoId = "z0Yty3hIAeY";
   const order = "time";
 
   const { youtube } = useYoutubeApi();
@@ -31,7 +34,7 @@ export default function Comment() {
           {/* 댓글 input */}
           <div className={styles.commentAdd}>
             {/* 📌 댓글 작성 창 프로필 img  => 변경필요 */}
-            <img src="http://localhost:3000/favicon.ico" />
+            <img src="/images/profileImg.jpg" />
             <div>
               <input
                 type="text"

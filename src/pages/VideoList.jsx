@@ -1,9 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import VideoItem from '../components/VideoItem';
-import { useYoutubeApi } from '../context/ApiContext';
-import styles from './Videos.module.css';
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import { useParams } from "react-router-dom";
+import VideoItem from "../components/VideoItem";
+import { useYoutubeApi } from "../context/ApiContext";
+import styles from "./VideoList.module.css";
 
 export default function Videos() {
   const { keyword } = useParams();
@@ -14,19 +14,21 @@ export default function Videos() {
   };
 
   const { data: videos } = useQuery(
-    ['videos', keyword],
+    ["videos", keyword],
     () => {
       return youtube.search(keyword);
     },
     QueryOption
   );
+
+  console.log(videos);
   return (
     <div>
       {videos && (
         <div className={styles.videoContainer}>
           <ul className={styles.videoLists}>
             {videos.map((video) => {
-              return <VideoItem key={video.id} video={video} type='main' />;
+              return <VideoItem key={video.id} video={video} type="main" />;
             })}
           </ul>
         </div>

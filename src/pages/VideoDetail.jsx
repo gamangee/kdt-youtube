@@ -6,7 +6,8 @@ import ChannelInfo from "./ChannelInfo";
 import styles from "./VideoDetail.module.css";
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { BsShare, BsSave } from "react-icons/bs";
-import RelatedVideos from "../components/RelatedVideos"
+import RelatedVideos from "../components/RelatedVideos";
+import Comment from "../components/comment/Comment";
 
 export default function VideoDetail() {
   const {
@@ -49,67 +50,75 @@ export default function VideoDetail() {
   const convertedDate = (str) => {
     return str.slice(0, 10).replaceAll("-", ".");
   };
+
+
+  console.log(queryResult);
+
   return (
-    <div className={styles.wrapper}>
-      {contentDetails ? (
-        <div>
-          <article>
-            <div>
-              <iframe
-                width="100%"
-                height="800"
-                src={`https://www.youtube.com/embed/${videoId}`}
-              ></iframe>
-            </div>
-            {/* <div dangerouslySetInnerHTML={{ __html: player.embedHtml }}></div> */}
-            <h3>{snippet.title}</h3>
-          </article>
+    <>
+      <div className={styles.wrapper}>
+        {contentDetails ? (
+          <div>
+            <article>
+              <div>
+                <iframe
+                  width="100%"
+                  height="800"
+                  alt="youtube#video"
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                ></iframe>
+              </div>
+              {/* <div dangerouslySetInnerHTML={{ __html: player.embedHtml }}></div> */}
+              <h3>{snippet.title}</h3>
+            </article>
 
-          <section className={styles.channelAndLikes}>
-            <ChannelInfo playerSnippet={snippet} />
+            <section className={styles.channelAndLikes}>
+              <ChannelInfo playerSnippet={snippet} />
 
-            <ul className={styles.lists}>
-              <li className={styles.list}>
-                <button className={styles.buttons}>
-                  <FaThumbsUp />
-                  {statistics.likeCount}
-                </button>
-                <button className={styles.buttons}>
-                  <FaThumbsDown />
-                </button>
-              </li>
+              <ul className={styles.lists}>
+                <li className={styles.list}>
+                  <button className={styles.buttons}>
+                    <FaThumbsUp />
+                    {statistics.likeCount}
+                  </button>
+                  <button className={styles.buttons}>
+                    <FaThumbsDown />
+                  </button>
+                </li>
 
-              <li className={styles.list}>
-                <button className={styles.buttons}>
-                  <BsShare />
-                </button>
-              </li>
-              <li className={styles.list}>
-                <button className={styles.buttons}>
-                  <BsSave />
-                </button>
-              </li>
-            </ul>
-          </section>
+                <li className={styles.list}>
+                  <button className={styles.buttons}>
+                    <BsShare />
+                  </button>
+                </li>
+                <li className={styles.list}>
+                  <button className={styles.buttons}>
+                    <BsSave />
+                  </button>
+                </li>
+              </ul>
+            </section>
 
-          <section className={styles.description}>
-            <div className={styles.firstInfo}>
-              <p className={styles.firstInfoElements}>
-                조회수 : {formatNumber(statistics.viewCount)}
-              </p>
-              <p className={styles.firstInfoElements}>
-                {convertedDate(snippet.publishedAt)}
-              </p>
-            </div>
-            <p className={styles.tags}>{snippet.tags.map((i) => `#${i} `)}</p>
+            <section className={styles.description}>
+              <div className={styles.firstInfo}>
+                <p className={styles.firstInfoElements}>
+                  조회수 : {formatNumber(statistics.viewCount)}
+                </p>
+                <p className={styles.firstInfoElements}>
+                  {convertedDate(snippet.publishedAt)}
+                </p>
+              </div>
+              <p className={styles.tags}>{snippet.tags.map((i) => `#${i} `)}</p>
 
-            <p>{snippet.description}</p>
-          </section>
-            <RelatedVideos id={video.id} />
-        </div>
-      ) : (
-        <></>
-      )}
-    </div>
+              <p>{snippet.description}</p>
+            </section>
+            <Comment id={video.id} />
+          </div>
+        ) : (
+          <></>
+        )}
+      <RelatedVideos id={video.id} />
+      </div>
+    </>
   );
 }

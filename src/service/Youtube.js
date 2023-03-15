@@ -29,7 +29,7 @@ export default class Youtube {
       .get('search', {
         params: {
           part: 'snippet',
-          maxResults: 20,
+          maxResults: 5,
           type: 'video',
           q: keyword,
         },
@@ -51,11 +51,11 @@ export default class Youtube {
       .get('videos', {
         params: {
           part: 'snippet,statistics',
-          maxResults: 20,
+          maxResults: 5,
           chart: 'mostPopular',
         },
       })
-      .then((res) => res.data.items[0]);
+      .then((res) => res.data.items);
   }
 
   async comment(videoId) {
@@ -64,7 +64,7 @@ export default class Youtube {
         params: {
           part: "snippet",
           videoId: videoId,
-          maxResults: 10,
+          maxResults: 5,
         },
       })
       .then((res) => res.data.items)
@@ -84,7 +84,7 @@ export default class Youtube {
       .get('search', {
         params: {
           part: 'snippet',
-          maxResults: 20,
+          maxResults: 5,
           type: 'video',
           relatedToVideoId: id,
         },
