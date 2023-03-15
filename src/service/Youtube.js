@@ -83,4 +83,27 @@ export default class Youtube {
       })
       .then((res) => res.data.items[0].snippet.thumbnails.default.url);
   }
+
+  async #searchVideoId(videoId) {
+    return this.instance
+      .get(`videos`, {
+        params: {
+          part: 'snippet,contentDetails,player,statistics',
+          id: videoId,
+        },
+      })
+      .then((res) => res.data.items[0]);
+  }
+
+  async #searchChannelInfo(channelId) {
+    return this.instance
+      .get('channels', {
+        params: {
+          part: 'snippet,statistics,contentDetails',
+          id: channelId,
+        },
+      })
+      .then((res) => res.data.items[0]);
+  }
+
 }

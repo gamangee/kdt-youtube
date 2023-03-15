@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { useYoutubeApi } from '../context/ApiContext';
-import ChannelInfo from './ChannelInfo';
-import styles from './VideoDetail.module.css';
-import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
-import { BsShare, BsSave } from 'react-icons/bs';
+import React from "react";
+import { useLocation, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { useYoutubeApi } from "../context/ApiContext";
+import ChannelInfo from "./ChannelInfo";
+import styles from "./VideoDetail.module.css";
+import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
+import { BsShare, BsSave } from "react-icons/bs";
+import RelatedVideos from "../components/RelatedVideos"
 
 export default function VideoDetail() {
   const {
     state: { video },
   } = useLocation();
+
   const { videoId } = useParams();
   const { youtube } = useYoutubeApi();
   const QueryOption = {
@@ -18,13 +20,15 @@ export default function VideoDetail() {
   };
 
   const { data: queryResult } = useQuery(
-    ['searchId'],
+    ["searchId"],
     () => {
       return youtube.searchId(videoId);
     },
-    QueryOption,
+    QueryOption
   );
-  const { contentDetails, player, snippet, statistics } = queryResult ? queryResult: '';
+  const { contentDetails, player, snippet, statistics } = queryResult
+    ? queryResult
+    : "";
 
   // api호출 제한으로 인한 로컬스토리지 사용
   //localStorage.setItem('searchID',JSON.stringify(queryResult))
@@ -34,16 +38,16 @@ export default function VideoDetail() {
 
   function formatNumber(num) {
     if (num >= 1000000) {
-      return (num / 1000000).toFixed(2) + 'm';
+      return (num / 1000000).toFixed(2) + "m";
     } else if (num >= 1000) {
-      return (num / 1000).toFixed(2) + 'k';
+      return (num / 1000).toFixed(2) + "k";
     } else {
       return num.toString();
     }
   }
 
   const convertedDate = (str) => {
-    return str.slice(0, 10).replaceAll('-', '.');
+    return str.slice(0, 10).replaceAll("-", ".");
   };
   return (
     <div className={styles.wrapper}>
@@ -101,6 +105,7 @@ export default function VideoDetail() {
 
             <p>{snippet.description}</p>
           </section>
+            <RelatedVideos id={video.id} />
         </div>
       ) : (
         <></>
