@@ -47,7 +47,7 @@ export default class mockYoutube {
         params: {
           part: "snippet",
           videoId: videoId,
-          maxResults: 5,
+          maxResults: 10,
         },
       })
       .then((res) => res.data.items)
@@ -55,7 +55,7 @@ export default class mockYoutube {
         items.map((item) => {
           return {
             ...item,
-            topLevelCommentId: item.snippet.topLevelComment.id,
+            // topLevelCommentId: item.snippet.topLevelComment.id,
             topLevelComment: item.snippet.topLevelComment.snippet,
             totalReplyCount: item.snippet.totalReplyCount,
           };

@@ -53,7 +53,20 @@
 .commentContent a {
   /* 댓글 내용 a 태그 */
   color: #3ea6ff;
-  text-decoration: none;
+}
+
+.moreBtn {
+  width: 80px;
+  color: #fff;
+  font-size: 12px;
+  opacity: 0.8;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.moreBtn:hover {
+  text-decoration: underline;
 }
 
 .commentBtnGroup {

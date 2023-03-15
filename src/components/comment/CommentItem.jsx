@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AiFillLike,
   AiOutlineLike,
@@ -21,16 +21,42 @@ export default function CommentItem({ comment, replyCount }) {
   // 답글 개수(확인) 버튼 클릭여부
   const [isReplyCount, setIsReplyCount] = useState(false);
 
+  // 댓글 글자 150자보다 넘는지?
+  const [isLong, setIsLong] = useState(false);
+
+  function checkLong(text) {
+    if (text >= 150) {
+      setIsLong(true);
+    }
+  }
+
+  useEffect(() => {
+    checkLong(comment.textDisplay.length);
+  }, []);
+
+  // 답글 만들기
+  function createReply(replyCount) {
+    let arr = [];
+    for (let i = 0; i < replyCount; i++) {
+      arr.push(<li>Nickname{i + 1} : BlaBlaBla ....</li>);
+    }
+    return arr;
+  }
+
   return (
     <div className={styles.container}>
       <div>
-        {/* 댓글 프로필 */}
-        <img src={comment.authorProfileImageUrl} alt="comment-profile" />
+        {/* 프로필img : 클릭 시, 작성자 channel 이동*/}
+        <a href={`${comment.authorChannelUrl}`}>
+          <img src={comment.authorProfileImageUrl} alt="comment-profile" />
+        </a>
       </div>
       <div className={styles.comment}>
         <div className={styles.commentInfo}>
-          {/* 작성자 */}
-          <a href="">{comment.authorDisplayName}</a>
+          {/* 작성자 : 클릭 시, 작성자 channel 이동 */}
+          <a href={`${comment.authorChannelUrl}`}>
+            {comment.authorDisplayName}
+          </a>
           {/* 댓글 작성 날짜 */}
           <div>
             <CommentDate
@@ -39,14 +65,27 @@ export default function CommentItem({ comment, replyCount }) {
             />
           </div>
         </div>
-        {/* 댓글 내용 */}
-
-        <div
-          className={styles.commentContent}
-          dangerouslySetInnerHTML={{ __html: comment.textDisplay }}
-        >
-          {/* {comment.textDisplay} */}
-        </div>
+        {/* 댓글 내용 : string => html 형식 변환 */}
+        {isLong ? (
+          <>
+            <div
+              className={styles.commentContent}
+              dangerouslySetInnerHTML={{
+                __html: comment.textDisplay.substr(0, 150) + "...",
+              }}
+            ></div>
+            <div className={styles.moreBtn} onClick={() => setIsLong(false)}>
+              자세히 보기
+            </div>
+          </>
+        ) : (
+          <div
+            className={styles.commentContent}
+            dangerouslySetInnerHTML={{
+              __html: comment.textDisplay,
+            }}
+          ></div>
+        )}
         {/* 버튼 */}
         <div className={styles.commentBtnGroup}>
           {/* 좋아요버튼 */}
@@ -106,7 +145,7 @@ export default function CommentItem({ comment, replyCount }) {
           </button>
         </div>
         {/* 답글 토글  */}
-        {isReply ? (
+        {isReply && (
           <div className={styles.replyToggle}>
             {/* 프로필 이미지 */}
             <img src="/" alt="profile" />
@@ -130,24 +169,24 @@ export default function CommentItem({ comment, replyCount }) {
               </div>
             </div>
           </div>
-        ) : (
-          <></>
         )}
-        {/* 답글개수가 0개 이상이면 답글 확인 버튼 표시 */}
-        {replyCount > 0 ? (
+        {/* 답글개수가 0개 이상이면 답글 개수 버튼 표시 */}
+        {replyCount > 0 && (
           <div className={styles.replyCount}>
             {isReplyCount ? (
-              <button onClick={() => setIsReplyCount(!isReplyCount)}>
-                <VscTriangleUp /> 답글 {replyCount}개
-              </button>
+              // 답글 개수 버튼 클릭시
+              <>
+                <button onClick={() => setIsReplyCount(!isReplyCount)}>
+                  <VscTriangleUp /> 답글 {replyCount}개
+                </button>
+                {createReply(replyCount)}
+              </>
             ) : (
               <button onClick={() => setIsReplyCount(!isReplyCount)}>
                 <VscTriangleDown /> 답글 {replyCount}개
               </button>
             )}
           </div>
-        ) : (
-          <></>
         )}
       </div>
     </div>

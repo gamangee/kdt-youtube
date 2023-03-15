@@ -30,6 +30,7 @@ export default function Comment() {
           </div>
           {/* 댓글 input */}
           <div className={styles.commentAdd}>
+            {/* 📌 댓글 작성 창 프로필 img  => 변경필요 */}
             <img src="http://localhost:3000/favicon.ico" />
             <div>
               <input
