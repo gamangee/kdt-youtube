@@ -7,8 +7,7 @@ import styles from "./css/Comment.module.css";
 import { useParams } from "react-router-dom";
 
 export default function Comment() {
-
-  const {videoId} = useParams();
+  const { videoId } = useParams();
   // http://localhost:3000/videos/watch/:z0Yty3hIAeY
   // const videoId = "z0Yty3hIAeY";
   const order = "time";
@@ -19,6 +18,7 @@ export default function Comment() {
     return youtube.comment(videoId);
   });
 
+  // 댓글 입력창 클릭 여부
   const [isComment, setIsComment] = useState(false);
 
   return (
@@ -33,10 +33,11 @@ export default function Comment() {
           </div>
           {/* 댓글 input */}
           <div className={styles.commentAdd}>
-            {/* 📌 댓글 작성 창 프로필 img  => 변경필요 */}
+            {/* 댓글 작성 창 프로필 img */}
             <img src="/images/profileImg.jpg" />
             <div>
               <input
+                className={styles.commentinput}
                 type="text"
                 placeholder="댓글추가..."
                 onClick={() => setIsComment(true)}
