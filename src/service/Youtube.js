@@ -55,14 +55,17 @@ export default class Youtube {
           chart: 'mostPopular',
         },
       })
-      .then((res) => res.data.items);
+      .then((res) => res.data.items)
+      .then((items) =>
+        items.filter((item) => item.id.kind !== 'youtube#channel')
+      );
   }
 
   async comment(videoId) {
     return this.instance
-      .get("commentThreads", {
+      .get('commentThreads', {
         params: {
-          part: "snippet",
+          part: 'snippet',
           videoId: videoId,
           maxResults: 5,
         },
@@ -89,8 +92,12 @@ export default class Youtube {
           relatedToVideoId: id,
         },
       })
+
       .then((res) =>
         res.data.items.map((item) => ({ ...item, id: item.id.videoId }))
+      )
+      .then((items) =>
+        items.filter((item) => item.id.kind !== 'youtube#channel')
       );
   }
 
@@ -126,5 +133,4 @@ export default class Youtube {
       })
       .then((res) => res.data.items[0]);
   }
-
 }
