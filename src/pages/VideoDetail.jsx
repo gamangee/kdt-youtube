@@ -4,7 +4,12 @@ import { useQuery } from '@tanstack/react-query';
 import { useYoutubeApi } from '../context/ApiContext';
 import ChannelInfo from './ChannelInfo';
 import styles from './VideoDetail.module.css';
-import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
+import {
+  FaThumbsUp,
+  FaRegThumbsUp,
+  FaThumbsDown,
+  FaRegThumbsDown,
+} from 'react-icons/fa';
 import { BsShare, BsSave } from 'react-icons/bs';
 import RelatedVideos from '../components/RelatedVideos';
 import Comment from '../components/comment/Comment';
@@ -14,6 +19,9 @@ export default function VideoDetail() {
   const [queryResult, setQueryResult] = useState({});
 
   const [isOver, setIsOver] = useState(false);
+
+  const [isLike, setIsLike] = useState(false);
+  const [isHate, setIsHate] = useState(false);
 
   const {
     state: { video },
@@ -58,6 +66,24 @@ export default function VideoDetail() {
     }
   }
 
+  const clickLike = () => {
+    if (isHate) {
+      setIsHate((prev) => !prev);
+      setIsLike((prev) => !prev);
+    } else {
+      setIsLike((prev) => !prev);
+    }
+  };
+
+  const clickHate = () => {
+    if (isLike) {
+      setIsLike((prev) => !prev);
+      setIsHate((prev) => !prev);
+    } else {
+      setIsHate((prev) => !prev);
+    }
+  };
+
   return (
     <>
       <div className={styles.wrapper}>
@@ -80,12 +106,21 @@ export default function VideoDetail() {
               <ChannelInfo playerSnippet={snippet} />
               <ul className={styles.lists}>
                 <li className={styles.list}>
-                  <button className={styles.buttons}>
-                    <FaThumbsUp />
-                    {statistics.likeCount}
+                  <button className={styles.buttons} onClick={clickLike}>
+                    {isLike ? (
+                      <>
+                        <FaThumbsUp />
+                        &nbsp; {Number(statistics.likeCount) + 1}
+                      </>
+                    ) : (
+                      <>
+                        <FaRegThumbsUp />
+                        &nbsp; {statistics.likeCount}
+                      </>
+                    )}
                   </button>
-                  <button className={styles.buttons}>
-                    <FaThumbsDown />
+                  <button className={styles.buttons} onClick={clickHate}>
+                    {isHate ? <FaThumbsDown /> : <FaRegThumbsDown />}
                   </button>
                 </li>
 
