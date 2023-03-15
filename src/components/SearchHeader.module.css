@@ -2,11 +2,10 @@
   display: flex;
   box-sizing: border-box;
   height: 4rem;
-  /* background-color: #0f0f0f; */
-  background-color: var(--color-bg-dark);
+  background-color: var(--color-bg-main);
   line-height: 2rem;
   font-size: 1.5rem;
-  color: white;
+  color: var(--color-font);
   padding: 0.5rem 2.5rem;
   justify-content: space-between;
   align-items: center;
@@ -35,7 +34,7 @@
 }
 
 .formContainer{
-  flex-basis: 35%;
+  flex-basis: 40%;
   margin-top: 2px;
 }
 
@@ -57,17 +56,15 @@ form {
   box-sizing: border-box;
   height: 2.5rem;
   font-size: 1rem;
-  flex-grow: 5;
+  flex-grow: 4.5;
   outline: none;
   outline-color: gray;
-  background-color: #0f0f0f;
+  background-color: var(--color-bg-main);
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
-  /* border: 1px solid rgb(34, 34, 34); */
-  border: 1px solid var(--color-bg-dark-hover);
+  border: 1px solid var(--color-main-border);
   text-indent: 1.25rem;
-  /* color: rgb(226,226,226); */
-  color: var(--color-dark-input);
+  color: var(--color-main-input);
 }
 
 .input::placeholder {
@@ -83,12 +80,14 @@ form {
   width: 3.25rem;
   height: 2.5rem;
   /* background-color: rgb(34, 34, 34); */
-  background-color: var(--color-bg-dark-hover);
+  background-color: var(--color-bg-main-hover);
   padding: 0.25rem;
   outline: none;
-  border: 0;
+  border: 1px solid var(--color-main-border);
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
+  flex-grow: 0.3;
+  color : var(--color-font)
 }
 
 .mic{
@@ -100,13 +99,13 @@ form {
   justify-content: center;
   align-items: center;
   /* background-color: rgb(24, 24, 24); */
-  background-color: var(--color-bg-dark2);
 }
 
 .mic:hover{
   /* background-color: rgb(48, 48, 48); */
-  background-color: var(--color-bg-dark2-hover);
+  background-color: var(--color-bg-main2-hover);
 }
+
 
 .iconContainer{
   display: flex;
@@ -140,7 +139,7 @@ form {
   width: 40px;
   height: 40px;
   /* background-color: #0f0f0f; */
-  background-color: var(--color-bg-dark);
+  background-color: var(--color-bg-main);
   border-radius: 50%;
   flex-grow: 1;
   justify-content: center;
@@ -153,7 +152,7 @@ form {
   width: 40px;
   height: 40px;
   /* background-color: #0f0f0f; */
-  background-color: var(--color-bg-dark);
+  background-color: var(--color-bg-main);
   border-radius: 50%;
   flex-grow: 1;
   justify-content: center;
@@ -168,12 +167,12 @@ form {
 
 .videoImg:hover{
   /* background-color: rgb(34, 34, 34); */
-  background-color: var(--color-bg-dark-hover);
+  background-color: var(--color-bg-main-hover);
 }
 
 .bellImg:hover{
   /* background-color: rgb(34, 34, 34); */
-  background-color: var(--color-bg-dark-hover);
+  background-color: var(--color-bg-main-hover);
 }
 .bellImg{
   flex-grow: 1;
@@ -187,11 +186,11 @@ form {
   outline: none;
   border: none;
   border-radius: 50%;
-  background-color: var(--color-bg-dark);
-  color: white;
+  background-color: var(--color-bg-main);
+  color: var(--color-font);
   margin-right: 10px;
 }
 
 .modeChange:hover{
-  background-color: var(--color-bg-dark-hover);
+  background-color: var(--color-bg-main-hover);
 }

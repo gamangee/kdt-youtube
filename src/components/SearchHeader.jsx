@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { BiVideoPlus } from "react-icons/bi";
+import { SlMagnifier } from "react-icons/sl";
 import { AiOutlineBell } from "react-icons/ai";
 import { IoMdMic } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -12,7 +13,6 @@ export default function SearchHeader() {
   const [value, setValue] = useState("");
   const { keyword } = useParams();
   const { darkMode, toggleDarkMode } = useDarkMode();
-
 
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ export default function SearchHeader() {
           <RxHamburgerMenu />
         </div>
         <Link className={styles.a} to="/">
-          <img className={styles.logo} src="/images/logo.png" alt="youtube" />
+          <img className={styles.logo} src={`/images/${darkMode ? 'dark' : 'light'}logo.png`} alt="youtube" />
         </Link>
         <div className={styles.formContainer}>
           <form onSubmit={handleSubmit}>
@@ -48,11 +48,7 @@ export default function SearchHeader() {
               type="submit"
               onClick={handleSubmit}
             >
-              <img
-                className={styles.buttonImg}
-                src="/images/search.png"
-                alt="search"
-              />
+              <SlMagnifier style={{width: '1rem' , height : '1rem'}} />
             </button>
             <div className={styles.mic}>
               <IoMdMic />

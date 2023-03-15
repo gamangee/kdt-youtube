@@ -12,7 +12,7 @@ export function DarkModeProvider({ children }) {
 
   useEffect(() => {
     const isDarkMode = 'dark' === localStorage.getItem("theme");
-      
+      console.log(isDarkMode);
       setDarkMode(isDarkMode);
       darkModeUpdate(isDarkMode);
 
@@ -27,10 +27,12 @@ export function DarkModeProvider({ children }) {
 
 function darkModeUpdate(darkMode) {
   if (darkMode) {
+    document.documentElement.classList.remove("light");
     document.documentElement.classList.add("dark");
     localStorage.theme = 'dark';
   } else {
     document.documentElement.classList.remove("dark");
+    document.documentElement.classList.add("light");
     localStorage.theme= 'light'
   }
 }
