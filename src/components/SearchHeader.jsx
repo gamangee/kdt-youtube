@@ -14,7 +14,7 @@ export default function SearchHeader() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/Videos/${value}`);
+    navigate(`/videos/${value}`);
   };
 
   useEffect(() => {
@@ -27,8 +27,8 @@ export default function SearchHeader() {
       <div className={styles.toggle}>
         <RxHamburgerMenu />
       </div>
-      <Link className={styles.a} to="/">
-        <img className={styles.logo} src="/images/logo.png" alt="youtube" />
+      <Link className={styles.a} to='/'>
+        <img className={styles.logo} src='/images/logo.png' alt='youtube' />
       </Link>
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit}>

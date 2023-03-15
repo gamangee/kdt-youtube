@@ -8,6 +8,9 @@ import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 import { BsShare, BsSave } from 'react-icons/bs';
 
 export default function VideoDetail() {
+  const {
+    state: { video },
+  } = useLocation();
   const { videoId } = useParams();
   const { youtube } = useYoutubeApi();
   const QueryOption = {
