@@ -2,7 +2,8 @@
   display: flex;
   box-sizing: border-box;
   height: 4rem;
-  background-color: #0f0f0f;
+  /* background-color: #0f0f0f; */
+  background-color: var(--color-bg-dark);
   line-height: 2rem;
   font-size: 1.5rem;
   color: white;
@@ -62,9 +63,11 @@ form {
   background-color: #0f0f0f;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
-  border: 1px solid rgb(34, 34, 34);
+  /* border: 1px solid rgb(34, 34, 34); */
+  border: 1px solid var(--color-bg-dark-hover);
   text-indent: 1.25rem;
-  color: rgb(226,226,226);
+  /* color: rgb(226,226,226); */
+  color: var(--color-dark-input);
 }
 
 .input::placeholder {
@@ -79,7 +82,8 @@ form {
   box-sizing: border-box;
   width: 3.25rem;
   height: 2.5rem;
-  background-color: rgb(34, 34, 34);
+  /* background-color: rgb(34, 34, 34); */
+  background-color: var(--color-bg-dark-hover);
   padding: 0.25rem;
   outline: none;
   border: 0;
@@ -95,11 +99,13 @@ form {
   margin-left: 10px;
   justify-content: center;
   align-items: center;
-  background-color: rgb(24, 24, 24);
+  /* background-color: rgb(24, 24, 24); */
+  background-color: var(--color-bg-dark2);
 }
 
 .mic:hover{
-  background-color: rgb(48, 48, 48);
+  /* background-color: rgb(48, 48, 48); */
+  background-color: var(--color-bg-dark2-hover);
 }
 
 .iconContainer{
@@ -133,7 +139,8 @@ form {
   display: flex;
   width: 40px;
   height: 40px;
-  background-color: #0f0f0f;
+  /* background-color: #0f0f0f; */
+  background-color: var(--color-bg-dark);
   border-radius: 50%;
   flex-grow: 1;
   justify-content: center;
@@ -145,7 +152,8 @@ form {
   display: flex;
   width: 40px;
   height: 40px;
-  background-color: #0f0f0f;
+  /* background-color: #0f0f0f; */
+  background-color: var(--color-bg-dark);
   border-radius: 50%;
   flex-grow: 1;
   justify-content: center;
@@ -159,12 +167,31 @@ form {
 }
 
 .videoImg:hover{
-  background-color: rgb(34, 34, 34);
+  /* background-color: rgb(34, 34, 34); */
+  background-color: var(--color-bg-dark-hover);
 }
 
 .bellImg:hover{
-  background-color: rgb(34, 34, 34);
+  /* background-color: rgb(34, 34, 34); */
+  background-color: var(--color-bg-dark-hover);
 }
 .bellImg{
   flex-grow: 1;
+}
+
+
+/* dark mode 관련 */
+.modeChange{
+  width: 40px;
+  height: 40px;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-bg-dark);
+  color: white;
+  margin-right: 10px;
+}
+
+.modeChange:hover{
+  background-color: var(--color-bg-dark-hover);
 }
