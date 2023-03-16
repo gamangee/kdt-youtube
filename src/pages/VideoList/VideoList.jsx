@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useParams } from "react-router-dom";
-import VideoItem from "../components/VideoItem";
-import { useYoutubeApi } from "../context/ApiContext";
+import VideoItem from '../../components/VideoItem/VideoItem'
+import { useYoutubeApi } from "../../context/ApiContext";
 import styles from "./VideoList.module.css";
 
 export default function Videos() {

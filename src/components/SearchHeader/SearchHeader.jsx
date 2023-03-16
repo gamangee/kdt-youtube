@@ -7,7 +7,7 @@ import { IoMdMic } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { HiSun, HiMoon } from "react-icons/hi";
 import styles from "./SearchHeader.module.css";
-import { useDarkMode } from "../context/DarkModeContext";
+import { useDarkMode } from "../../context/DarkModeContext"; 
 
 export default function SearchHeader() {
   const [value, setValue] = useState("");

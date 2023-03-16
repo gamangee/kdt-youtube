@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { useYoutubeApi } from '../context/ApiContext';
-import ChannelInfo from './ChannelInfo';
+import { useYoutubeApi } from '../../context/ApiContext';
+import ChannelInfo from '../../components/ChannelInfo/ChannelInfo';
 import styles from './VideoDetail.module.css';
 import {
   FaThumbsUp,
@@ -10,9 +10,9 @@ import {
   FaRegThumbsDown,
 } from 'react-icons/fa';
 import { BsShare, BsSave } from 'react-icons/bs';
-import RelatedVideos from '../components/RelatedVideos';
-import Comment from '../components/comment/Comment';
-import { DateFormatter } from '../util/date';
+import RelatedVideos from '../../components/RelatedVideos/RelatedVideos';
+import Comment from '../../components/comment/Comment'
+import { DateFormatter } from '../../util/date';
 
 export default function VideoDetail() {
   const [queryResult, setQueryResult] = useState({});

@@ -4,9 +4,9 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import NotFound from "./pages/NotFound";
-import VideoList from "./pages/VideoList";
-import VideoDetail from "./pages/VideoDetail";
+import NotFound from "./pages/NotFound/NotFound";
+import VideoList from "./pages/VideoList/VideoList";
+import VideoDetail from "./pages/VideoDetail/VideoDetail";
 import { DarkModeProvider } from "./context/DarkModeContext";
 
 const router = createBrowserRouter([
