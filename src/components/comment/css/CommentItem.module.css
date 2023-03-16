@@ -1,12 +1,14 @@
 /* CommentItem */
 
 .container {
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   font-size: 15px;
   /* 줄바꿈 */
   word-break: keep-all;
   margin-bottom: 20px;
+  box-sizing: border-box;
 }
 
 .container img {

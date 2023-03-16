@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   AiFillLike,
   AiOutlineLike,
   AiFillDislike,
   AiOutlineDislike,
-} from 'react-icons/ai';
-import { VscTriangleDown, VscTriangleUp } from 'react-icons/vsc';
-import CommentDate from './CommentDate';
-import styles from './css/CommentItem.module.css';
+} from "react-icons/ai";
+import { VscTriangleDown, VscTriangleUp } from "react-icons/vsc";
+import CommentDate from "./CommentDate";
+import styles from "./css/CommentItem.module.css";
 
 export default function CommentItem({ comment, replyCount }) {
   // 좋아요 클릭여부
@@ -41,7 +41,7 @@ export default function CommentItem({ comment, replyCount }) {
   function createReply(replyCount) {
     let arr = [];
     for (let i = 0; i < replyCount; i++) {
-      arr.push(<li key={i}>Nickname{i + 1} : BlaBlaBla ....</li>);
+      arr.push(<li key={i}>Nickname{i + 1} : Blah Blah Blah ....</li>);
     }
     return arr;
   }
@@ -51,7 +51,7 @@ export default function CommentItem({ comment, replyCount }) {
       <div>
         {/* 프로필img : 클릭 시, 작성자 channel 이동*/}
         <a href={`${comment.authorChannelUrl}`}>
-          <img src={comment.authorProfileImageUrl} alt='comment-profile' />
+          <img src={comment.authorProfileImageUrl} alt="comment-profile" />
         </a>
       </div>
       <div className={styles.comment}>
@@ -74,7 +74,7 @@ export default function CommentItem({ comment, replyCount }) {
             <div
               className={styles.commentContent}
               dangerouslySetInnerHTML={{
-                __html: comment.textDisplay.substr(0, 150) + '...',
+                __html: comment.textDisplay.substr(0, 150) + "...",
               }}
             ></div>
             <div
@@ -170,9 +170,9 @@ export default function CommentItem({ comment, replyCount }) {
         {isReply && (
           <div className={styles.replyToggle}>
             {/* 프로필 이미지 */}
-            <img src='/images/profileImg.jpg' alt='profile' />
+            <img src="/images/profileImg.jpg" alt="profile" />
             <div className={styles.replyToggleContent}>
-              <input type='text' placeholder='답글추가...'></input>
+              <input type="text" placeholder="답글추가..."></input>
               <div className={styles.replyToggleBtngroup}>
                 {/* 취소버튼 */}
                 <button
