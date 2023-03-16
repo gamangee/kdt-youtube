@@ -7,18 +7,15 @@ import styles from "./css/Comment.module.css";
 import { useParams } from "react-router-dom";
 
 export default function Comment() {
-
-  const {videoId} = useParams();
-  // http://localhost:3000/videos/watch/:z0Yty3hIAeY
-  // const videoId = "z0Yty3hIAeY";
-  const order = "time";
+  const { videoId } = useParams();
 
   const { youtube } = useYoutubeApi();
 
-  const { data: commentList } = useQuery(["commentList"], () => {
+  const { data: commentList } = useQuery(["commentList", videoId], () => {
     return youtube.comment(videoId);
   });
 
+  // 댓글 입력창 클릭 여부
   const [isComment, setIsComment] = useState(false);
 
   return (
@@ -33,36 +30,32 @@ export default function Comment() {
           </div>
           {/* 댓글 input */}
           <div className={styles.commentAdd}>
-            {/* 📌 댓글 작성 창 프로필 img  => 변경필요 */}
-            <img src="/images/profileImg.jpg" />
-            <div>
+            {/* 댓글 작성 창 프로필 img */}
+            <img src="/images/profileImg.jpg" alt="profile_img" />
+            <form className={styles.commentForm}>
+              {/* 댓글 input */}
               <input
+                className={styles.commentInput}
                 type="text"
                 placeholder="댓글추가..."
-                onClick={() => setIsComment(true)}
+                onFocus={() => setIsComment(true)}
               ></input>
               {/* 댓글 토글 */}
               {isComment ? (
                 <div className={styles.commentToggle}>
-                  {/* 취소버튼 */}
-                  <button
-                    className={styles.commentCancle}
-                    onClick={() => setIsComment(false)}
-                  >
+                  {/* 댓글 취소 Btn */}
+                  <button type="reset" className={styles.commentCancle}>
                     취소
                   </button>
-                  {/* 답글 등록 버튼 */}
-                  <button
-                    className={styles.commentRegister}
-                    onClick={() => setIsComment(false)}
-                  >
-                    답글
+                  {/* 댓글 등록 Btn */}
+                  <button type="reset" className={styles.commentRegister}>
+                    댓글
                   </button>
                 </div>
               ) : (
                 <></>
               )}
-            </div>
+            </form>
           </div>
           {commentList.map((comment) => (
             <div key={comment.id}>
@@ -86,7 +79,13 @@ export default function Comment() {
           </div>
           <div className={styles.commentAdd}>
             <img src="" alt="profileImg" />
-            <input type="text" placeholder="댓글추가..."></input>
+            <form className={styles.commentForm}>
+              <input
+                type="text"
+                className={styles.commentInput}
+                placeholder="댓글추가..."
+              ></input>
+            </form>
           </div>
         </>
       )}

@@ -1,5 +1,3 @@
-import React from "react";
-
 // date 함수 사용
 export default function calcDate(current, update) {
   const minute = 60 * 1000;

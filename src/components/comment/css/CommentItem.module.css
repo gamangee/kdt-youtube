@@ -1,12 +1,14 @@
 /* CommentItem */
 
 .container {
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   font-size: 15px;
   /* 줄바꿈 */
   word-break: keep-all;
   margin-bottom: 20px;
+  box-sizing: border-box;
 }
 
 .container img {
@@ -55,7 +57,7 @@
   color: #3ea6ff;
 }
 
-.moreBtn {
+.contentBtn {
   width: 80px;
   color: #fff;
   font-size: 12px;
@@ -65,7 +67,7 @@
   cursor: pointer;
 }
 
-.moreBtn:hover {
+.contentBtn:hover {
   text-decoration: underline;
 }
 

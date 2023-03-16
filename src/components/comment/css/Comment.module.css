@@ -1,10 +1,10 @@
 /* Comment */
 
 .container {
-  min-width: 500px;
-  background-color: #0f0f0f;
   color: #fff;
-  padding: 10px 25px;
+  margin-top: 10px;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .commentHeader {
@@ -12,6 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  margin-bottom: 5px;
 }
 
 .commentHeader div {
@@ -43,7 +44,6 @@
   position: absolute;
   top: calc(100% + 15px);
   left: calc(50% - 40px);
-  background-color: rgba(100, 100, 100, 0.7);
   font-size: 13px;
 }
 
@@ -53,13 +53,12 @@
 
 .commentAdd {
   width: 100%;
-  padding: 0 10px;
-  margin-bottom: 20px;
+  margin: 20px auto;
+  padding: 5px;
   display: flex;
-  /* align-items: center; */
   justify-content: flex-start;
-  box-sizing: border-box;
   position: relative;
+  box-sizing: border-box;
 }
 
 .commentAdd img {
@@ -69,12 +68,14 @@
   margin-right: 15px;
 }
 
-.commentAdd div {
+.commentForm {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.commentAdd input {
-  width: 100%;
+.commentInput {
+  height: 25px;
   margin-bottom: 10px;
   color: #fff;
   border: none;
@@ -85,7 +86,7 @@
   transition: border 0.5s;
 }
 
-.commentAdd input:focus {
+.commentInput:focus {
   border-bottom: 2.5px solid #fff;
 }
 
