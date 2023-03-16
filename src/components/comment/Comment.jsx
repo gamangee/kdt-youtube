@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { useYoutubeApi } from '../../context/ApiContext';
-import CommentItem from './CommentItem';
-import { BsFilterLeft } from 'react-icons/bs';
-import styles from './css/Comment.module.css';
-import { useParams } from 'react-router-dom';
+import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useYoutubeApi } from "../../context/ApiContext";
+import CommentItem from "./CommentItem";
+import { BsFilterLeft } from "react-icons/bs";
+import styles from "./css/Comment.module.css";
+import { useParams } from "react-router-dom";
 
 export default function Comment() {
   const { videoId } = useParams();
 
   const { youtube } = useYoutubeApi();
 
-  const { data: commentList } = useQuery(['commentList'], () => {
+  const { data: commentList } = useQuery(["commentList", videoId], () => {
     return youtube.comment(videoId);
   });
 
@@ -31,36 +31,31 @@ export default function Comment() {
           {/* 댓글 input */}
           <div className={styles.commentAdd}>
             {/* 댓글 작성 창 프로필 img */}
-            <img src='/images/profileImg.jpg' alt='profile_img' />
-            <div>
+            <img src="/images/profileImg.jpg" alt="profile_img" />
+            <form className={styles.commentForm}>
+              {/* 댓글 input */}
               <input
-                className={styles.commentinput}
-                type='text'
-                placeholder='댓글추가...'
-                onClick={() => setIsComment(true)}
+                className={styles.commentInput}
+                type="text"
+                placeholder="댓글추가..."
+                onFocus={() => setIsComment(true)}
               ></input>
               {/* 댓글 토글 */}
               {isComment ? (
                 <div className={styles.commentToggle}>
-                  {/* 취소버튼 */}
-                  <button
-                    className={styles.commentCancle}
-                    onClick={() => setIsComment(false)}
-                  >
+                  {/* 댓글 취소 Btn */}
+                  <button type="reset" className={styles.commentCancle}>
                     취소
                   </button>
-                  {/* 답글 등록 버튼 */}
-                  <button
-                    className={styles.commentRegister}
-                    onClick={() => setIsComment(false)}
-                  >
-                    답글
+                  {/* 댓글 등록 Btn */}
+                  <button type="reset" className={styles.commentRegister}>
+                    댓글
                   </button>
                 </div>
               ) : (
                 <></>
               )}
-            </div>
+            </form>
           </div>
           {commentList.map((comment) => (
             <div key={comment.id}>
@@ -83,8 +78,14 @@ export default function Comment() {
             </button>
           </div>
           <div className={styles.commentAdd}>
-            <img src='' alt='profileImg' />
-            <input type='text' placeholder='댓글추가...'></input>
+            <img src="" alt="profileImg" />
+            <form className={styles.commentForm}>
+              <input
+                type="text"
+                className={styles.commentInput}
+                placeholder="댓글추가..."
+              ></input>
+            </form>
           </div>
         </>
       )}
