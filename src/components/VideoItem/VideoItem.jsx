@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { useYoutubeApi } from '../context/ApiContext';
-import { DateFormatter } from '../util/date';
+import { useYoutubeApi } from '../../context/ApiContext';
+import { DateFormatter } from '../../util/date';
 import styles from './VideoItem.module.css';
 
 const VideoItem = ({ video, type }) => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useYoutubeApi } from '../context/ApiContext';
+import { useYoutubeApi} from '../../context/ApiContext';
 import styles from './ChannelInfo.module.css';
 
 const ChannelInfo = ({ playerSnippet }) => {

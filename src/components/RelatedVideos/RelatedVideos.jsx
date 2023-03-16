@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useYoutubeApi } from '../context/ApiContext';
-import VideoItem from './VideoItem';
+import { useYoutubeApi } from '../../context/ApiContext';
+import VideoItem from '../VideoItem/VideoItem';
 import styles from './RelatedVideos.module.css';
 
 const RelatedVideos = ({ id }) => {

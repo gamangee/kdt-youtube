@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import SearchHeader from "../components/SearchHeader";
+import SearchHeader from "../../components/SearchHeader/SearchHeader";
 import styles from "./NotFound.module.css";
 
 export default function NotFound() {
