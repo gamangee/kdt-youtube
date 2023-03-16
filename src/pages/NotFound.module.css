@@ -4,7 +4,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-bg-main);
   font-weight: 100;
   color: white;
 }

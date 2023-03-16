@@ -1,7 +1,7 @@
 /* Comment */
 
 .container {
-  color: #fff;
+  color : var(--color-font);
   margin-top: 10px;
   padding: 10px;
   box-sizing: border-box;
@@ -24,7 +24,7 @@
   width: 110px;
   font-size: 16px;
   background: none;
-  color: #fff;
+  color : var(--color-font);
   border: none;
   border-radius: 5px;
   position: relative;
@@ -41,6 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--color-main-description-hover);
   position: absolute;
   top: calc(100% + 15px);
   left: calc(50% - 40px);
@@ -77,13 +78,13 @@
 .commentInput {
   height: 25px;
   margin-bottom: 10px;
-  color: #fff;
   border: none;
   border-bottom: 2px solid rgba(100, 100, 100, 0.7);
-  background-color: #0f0f0f;
   font-size: 15px;
   outline: none;
   transition: border 0.5s;
+  background-color: var(--color-bg-main);
+  transition: 0.3s ease;
 }
 
 .commentInput:focus {
@@ -100,11 +101,11 @@
 .commentRegister {
   width: 55px;
   height: 35px;
-  color: #fff;
   border-radius: 20px;
   background: none;
   border: 0;
   cursor: pointer;
+  color: var(--color-font);
 }
 
 .commentCancle {

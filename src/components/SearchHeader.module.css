@@ -1,6 +1,8 @@
 .header {
+  transition: 0.3s ease;
   display: flex;
-  position: relative;
+  position: fixed;
+  width: 100%;
   box-sizing: border-box;
   height: 4rem;
   background-color: var(--color-bg-main);
@@ -10,6 +12,7 @@
   padding: 0.5rem 2.5rem;
   justify-content: space-between;
   align-items: center;
+  z-index: 10;
 }
 
 .toggle{
@@ -49,6 +52,7 @@ form {
 
 
 .input {
+  transition: 0.3s ease;
   box-sizing: border-box;
   height: 2.5rem;
   font-size: 1rem;
@@ -72,10 +76,10 @@ form {
 }
 
 .button {
+  transform: 0.3s ease;
   box-sizing: border-box;
   width: 3.25rem;
   height: 2.5rem;
-  /* background-color: rgb(34, 34, 34); */
   background-color: var(--color-bg-main-hover);
   padding: 0.25rem;
   outline: none;
@@ -132,7 +136,6 @@ form {
   display: flex;
   width: 40px;
   height: 40px;
-  background-color: var(--color-bg-main);
   border-radius: 50%;
   flex-grow: 1;
   justify-content: center;
@@ -144,7 +147,6 @@ form {
   display: flex;
   width: 40px;
   height: 40px;
-  background-color: var(--color-bg-main);
   border-radius: 50%;
   flex-grow: 1;
   justify-content: center;

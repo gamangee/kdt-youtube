@@ -1,7 +1,8 @@
 .videoContainer {
-  padding: 10px 40px;
+  padding: 4rem 40px;
   margin: 0 auto;
   cursor: pointer;
+  color: var(--color-font);
 }
 
 .videoLists {

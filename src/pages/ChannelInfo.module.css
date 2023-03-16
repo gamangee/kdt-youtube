@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   align-items: center;
+  
 }
 
 .info {
@@ -14,8 +15,9 @@
   font-size: 1rem;
   border: none;
   border-radius: 15px;
-  transition: background-color 0.3s ease;
+  color: var(--color-font);
+  background-color: var(--color-main-description);
 }
 .subscribe:hover {
-  background-color: #6e6e6e;
+  background-color: var(--color-main-description-hover);
 }

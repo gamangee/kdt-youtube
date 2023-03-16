@@ -75,7 +75,7 @@ export default function VideoDetail() {
 
   return (
     <>
-      <div>
+      <div className={styles.container}>
         {contentDetails ? (
           <div className={styles.wrapper}>
             <div className={styles.channelInfo}>

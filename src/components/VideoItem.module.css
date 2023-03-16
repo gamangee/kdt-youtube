@@ -1,6 +1,8 @@
 .mainContainer {
   display: flex;
   flex-direction: column;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .relatedContainer {
@@ -71,7 +73,12 @@
 }
 
 .channelTitle {
+  max-width: 8rem;
+  height: 1.5rem;
   opacity: 0.8;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow : hidden;
 }
 
 .videoEtc {
@@ -85,6 +92,17 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: var(--color-font);
+
   margin: 0 5px;
+}
+
+@media (max-width : 1000px) {
+  .channelTitle {
+    width: auto;
+    height: auto;
+  }
+  
+
+  
 }
