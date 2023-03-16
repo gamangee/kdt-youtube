@@ -1,11 +1,12 @@
 .header {
   display: flex;
+  position: relative;
   box-sizing: border-box;
   height: 4rem;
-  background-color: #0f0f0f;
+  background-color: var(--color-bg-main);
   line-height: 2rem;
   font-size: 1.5rem;
-  color: white;
+  color: var(--color-font);
   padding: 0.5rem 2.5rem;
   justify-content: space-between;
   align-items: center;
@@ -34,37 +35,32 @@
 }
 
 .formContainer{
-  flex-basis: 35%;
+  position: relative;
+  flex-basis: 40%;
   margin-top: 2px;
 }
 
 form {
   display: flex;
+  position: relative;
   box-sizing: border-box;
   margin-top: 2px;
 }
 
-/* 
-.title {
-  width: 8rem;
-  font-size: 2rem;
-  color: white;
-  margin: 0 0.5rem;
-} */
 
 .input {
   box-sizing: border-box;
   height: 2.5rem;
   font-size: 1rem;
-  flex-grow: 5;
+  flex-grow: 4.5;
   outline: none;
   outline-color: gray;
-  background-color: #0f0f0f;
+  background-color: var(--color-bg-main);
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
-  border: 1px solid rgb(34, 34, 34);
+  border: 1px solid var(--color-main-border);
   text-indent: 1.25rem;
-  color: rgb(226,226,226);
+  color: var(--color-main-input);
 }
 
 .input::placeholder {
@@ -79,12 +75,15 @@ form {
   box-sizing: border-box;
   width: 3.25rem;
   height: 2.5rem;
-  background-color: rgb(34, 34, 34);
+  /* background-color: rgb(34, 34, 34); */
+  background-color: var(--color-bg-main-hover);
   padding: 0.25rem;
   outline: none;
-  border: 0;
+  border: 1px solid var(--color-main-border);
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
+  flex-grow: 0.3;
+  color : var(--color-font)
 }
 
 .mic{
@@ -95,12 +94,12 @@ form {
   margin-left: 10px;
   justify-content: center;
   align-items: center;
-  background-color: rgb(24, 24, 24);
 }
 
 .mic:hover{
-  background-color: rgb(48, 48, 48);
+  background-color: var(--color-bg-main2-hover);
 }
+
 
 .iconContainer{
   display: flex;
@@ -133,7 +132,7 @@ form {
   display: flex;
   width: 40px;
   height: 40px;
-  background-color: #0f0f0f;
+  background-color: var(--color-bg-main);
   border-radius: 50%;
   flex-grow: 1;
   justify-content: center;
@@ -145,7 +144,7 @@ form {
   display: flex;
   width: 40px;
   height: 40px;
-  background-color: #0f0f0f;
+  background-color: var(--color-bg-main);
   border-radius: 50%;
   flex-grow: 1;
   justify-content: center;
@@ -159,12 +158,98 @@ form {
 }
 
 .videoImg:hover{
-  background-color: rgb(34, 34, 34);
+  background-color: var(--color-bg-main-hover);
 }
 
 .bellImg:hover{
-  background-color: rgb(34, 34, 34);
+  background-color: var(--color-bg-main-hover);
 }
 .bellImg{
   flex-grow: 1;
+}
+
+
+/* dark mode 관련 */
+.modeChange{
+  width: 40px;
+  height: 40px;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-bg-main);
+  color: var(--color-font);
+  padding-top: 4px;
+  margin-right: 10px;
+}
+
+.modeChange:hover{
+  background-color: var(--color-bg-main-hover);
+}
+
+
+@media (min-width : 768px) {
+  .formContainer{
+    width: 20rem;
+  }
+  
+  .responsiveBtn{
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: none;
+    padding-bottom: 5px;
+  }
+  #portal{
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .formContainer{
+    display: flex;
+    position: relative;
+    flex-direction: row-reverse;
+    margin-left: 1.75rem;
+  }
+
+  .responsiveBtn{
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0.25rem;
+    padding-right: 1.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .responsiveBtnImg{
+    transform: translate(75%, 10%);
+  }
+  .responsiveBtn:hover{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-bg-main-hover);
+  }
+
+  .input{
+    display: none;
+  }
+  .mic{
+    display: none;
+  }
+  .button{
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .mic{
+    display: none;
+  }
+
+  .bellImg{
+    display: none;
+  }
 }

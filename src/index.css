@@ -1,3 +1,26 @@
+:root{
+  --color-bg-main : #0f0f0f;
+  --color-bg-main-hover: #222;
+  --color-bg-main2 : #181818;
+  --color-bg-main2-hover: #303030;
+  --color-main-font : white;
+  --color-main-input : #E2E2E2;
+  --color-main-border : #3F3F3F; 
+  --color-font : white;
+}
+
+html.light{
+  --color-bg-main : #fff;
+  --color-bg-main-hover: #F8F8F8;
+  --color-bg-main2 : #F8F8F8;
+  --color-bg-main2-hover: #E5E5E5;
+  --color-main-font : black;
+  --color-main-input : #111;
+  --color-main-border : #CCC; 
+  --color-font : #111;
+}
+
+
 body {
   background-color: #0f0f0f;
   color: #fff;
