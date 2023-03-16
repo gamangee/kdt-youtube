@@ -18,7 +18,7 @@ export default function SearchHeader() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/Videos/${value}`);
+    navigate(`/videos/${value}`);
   };
 
   useEffect(() => {
