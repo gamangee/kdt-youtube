@@ -1,55 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import { useYoutubeApi } from '../../context/ApiContext';
-import ChannelInfo from '../../components/ChannelInfo/ChannelInfo';
-import styles from './VideoDetail.module.css';
+import React, { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import { useYoutubeApi } from "../../context/ApiContext";
+import ChannelInfo from "../../components/ChannelInfo/ChannelInfo";
+import styles from "./VideoDetail.module.css";
 import {
   FaThumbsUp,
   FaRegThumbsUp,
   FaThumbsDown,
   FaRegThumbsDown,
-} from 'react-icons/fa';
-import { BsShare, BsSave } from 'react-icons/bs';
-import RelatedVideos from '../../components/RelatedVideos/RelatedVideos';
-import Comment from '../../components/comment/Comment'
-import { DateFormatter } from '../../util/date';
+} from "react-icons/fa";
+import { BsShare, BsSave } from "react-icons/bs";
+import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
+import Comment from "../../components/comment/Comment";
+import { DateFormatter } from "../../util/date";
+import { useQuery } from "@tanstack/react-query";
 
 export default function VideoDetail() {
-  const [queryResult, setQueryResult] = useState({});
+  // const [queryResult, setQueryResult] = useState({});
+  const { videoId } = useParams();
+  const { youtube } = useYoutubeApi();
+
+
 
   const [isOver, setIsOver] = useState(false);
 
   const [isLike, setIsLike] = useState(false);
   const [isHate, setIsHate] = useState(false);
 
+  const QueryOption = {
+    staleTime: 5 * 60 * 1000,
+  };
+
+  const {data : queryResult} = useQuery(
+    ["videoId", videoId ],
+    ()=>{
+      return youtube.searchId(videoId)
+    },QueryOption
+  )
+
   const {
     state: { video },
   } = useLocation();
 
-  const { videoId } = useParams();
-  const { youtube } = useYoutubeApi();
-
-  useEffect(() => {
-    getData();
-  }, [videoId]);
-
-  const getData = async () => {
-    const result = await youtube.searchId(videoId);
-    setQueryResult(result);
-    result.snippet.description.length > 200
-      ? setIsOver(true)
-      : setIsOver(false);
-  };
-
   const { contentDetails, snippet, statistics } = queryResult
     ? queryResult
-    : '';
+    : "";
 
   function formatNumber(num) {
     if (num >= 1000000) {
-      return (num / 1000000).toFixed(2) + 'm';
+      return (num / 1000000).toFixed(2) + "m";
     } else if (num >= 1000) {
-      return (num / 1000).toFixed(2) + 'k';
+      return (num / 1000).toFixed(2) + "k";
     } else {
       return num.toString();
     }
@@ -83,11 +84,11 @@ export default function VideoDetail() {
                 <div className={styles.videoContainer}>
                   <iframe
                     title={snippet.title}
-                    width='100%'
-                    height='600'
-                    alt='youtube#video'
+                    width="100%"
+                    height="600"
+                    alt="youtube#video"
                     src={`https://www.youtube.com/embed/${videoId}`}
-                    frameBorder='0'
+                    frameBorder="0"
                     style={{ borderRadius: 8 }}
                   />
                 </div>
@@ -134,7 +135,7 @@ export default function VideoDetail() {
                     조회수 : {formatNumber(statistics.viewCount)}
                   </p>
                   <p className={styles.firstInfoElements}>
-                    {DateFormatter(snippet.publishedAt, 'ko')}
+                    {DateFormatter(snippet.publishedAt, "ko")}
                   </p>
                 </div>
                 <p className={styles.tags}>
@@ -153,7 +154,7 @@ export default function VideoDetail() {
                     </>
                   ) : (
                     <>
-                      {snippet.description.split('\n').map((i, index) => {
+                      {snippet.description.split("\n").map((i, index) => {
                         return (
                           <span key={index}>
                             {i}

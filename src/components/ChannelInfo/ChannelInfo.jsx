@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { useYoutubeApi} from '../../context/ApiContext';
+import { useYoutubeApi } from '../../context/ApiContext';
 import styles from './ChannelInfo.module.css';
+import { useQuery } from '@tanstack/react-query';
 
 const ChannelInfo = ({ playerSnippet }) => {
   const { youtube } = useYoutubeApi();
-  const [queryResult, setQueryResult] = useState({});
 
-  useEffect(() => {
-    youtube
-      .searchChannel(playerSnippet.channelId)
-      .then((res) => setQueryResult(res));
-  }, [playerSnippet, youtube]);
+  const QueryOption = {
+    staleTime: 5 * 60 * 1000,
+  };
+
+  const { data: queryResult } = useQuery(
+    ['id', playerSnippet.channelId],
+    () => {
+      return youtube.searchChannel(playerSnippet.channelId);
+    },
+    QueryOption,
+  );
 
   const { snippet, statistics } = queryResult ? queryResult : '';
+
 
   function formatNumber(num) {
     if (num >= 1000000) {
@@ -28,7 +35,7 @@ const ChannelInfo = ({ playerSnippet }) => {
       {snippet ? (
         <div className={styles.wrapper}>
           <img
-            alt='thumbnails'
+            alt="thumbnails"
             src={snippet.thumbnails.default.url}
             style={{
               borderRadius: '50%',
