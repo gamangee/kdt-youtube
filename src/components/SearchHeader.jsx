@@ -32,11 +32,16 @@ export default function SearchHeader() {
           <RxHamburgerMenu />
         </div>
         <Link className={styles.a} to="/">
-          <img className={styles.logo} src={`/images/${darkMode ? 'dark' : 'light'}logo.png`} alt="youtube" />
+          <img
+            className={styles.logo}
+            src={`/images/${darkMode ? "dark" : "light"}logo.png`}
+            alt="youtube"
+          />
         </Link>
         <div className={styles.formContainer}>
           <form onSubmit={handleSubmit}>
             <input
+              id="input"
               className={styles.input}
               type="text"
               placeholder="검색"
@@ -48,7 +53,7 @@ export default function SearchHeader() {
               type="submit"
               onClick={handleSubmit}
             >
-              <SlMagnifier style={{width: '1rem' , height : '1rem'}} />
+              <SlMagnifier style={{ width: "1rem", height: "1rem" }} />
             </button>
             <div className={styles.mic}>
               <IoMdMic />
@@ -56,6 +61,9 @@ export default function SearchHeader() {
           </form>
         </div>
         <div className={styles.iconContainer}>
+          <div className={styles.responsiveBtn}>
+            <SlMagnifier className={styles.responsiveBtnImg} />
+          </div>
           <button className={styles.modeChange} onClick={toggleDarkMode}>
             {!darkMode && <HiMoon />}
             {darkMode && <HiSun />}
