@@ -1,7 +1,5 @@
-# React 과제 Youtube App 만들기
-
-## 🖥️ 프로젝트 소개
-- 유튜브 클론 프로젝트
+# 🖥️ 프로젝트 소개
+- 유튜브 API를 활용한 실제와 유사한 사용자 경험을 제공하는 영상 공유 플랫폼 프로젝트
 
 ## ⏰ 진행 기간
 - 23.03.10 - 23.03.16
@@ -53,7 +51,7 @@
 - 라이트 혹은 다크 모드 변경
 - 화면 크기에 따른 반응형 CSS
 
-## 🎬 구현 영상
+## 🎬 구현 기능
 
 ✅ 동영상 목록 확인 및 검색
 
@@ -62,14 +60,6 @@
 ✅ 동영상 정보
 
 <img width="550" src="https://user-images.githubusercontent.com/117700630/225563076-301fa6fa-6d52-4d50-a5ed-84e08988ca5c.gif">
-
-✅ 댓글
-
-<img width="550" src="https://user-images.githubusercontent.com/117700630/225566020-03291112-ff1f-4f0f-988e-57589e24406c.gif">
-
-✅ 테마 변경  
-- useContext를 사용
-<img width="550" src="https://user-images.githubusercontent.com/117700630/225563020-e2aaf687-f416-4027-b68f-384538fd0465.gif">
 
 ✅ 반응형  
 - flex & grid 사용
